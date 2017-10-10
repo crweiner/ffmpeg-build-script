@@ -306,9 +306,8 @@ fi
 
 if build "openssl"; then
 	download "https://www.openssl.org/source/openssl-1.0.2l.tar.gz" "openssl-1.0.2l.tar.gz"
-	cd $PACKAGES/openssl-1* || exit
-	execute ./configure --prefix=${WORKSPACE} --disable-shared --enable-static
-	execute make -j $MJOBS
+	cd $PACKAGES/openssl-1.0.2l || exit
+	execute make depend
 	execute make install
 	build_done "openssl"
 fi
