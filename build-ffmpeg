@@ -306,12 +306,12 @@ fi
 
 if build "openssl"; then
 	download "https://www.openssl.org/source/openssl-1.1.0f.tar.gz" "/openssl-1.1.0f.tar.gz"
-	cd $PACKAGES//openssl-1.1.0f || exit
+	cd $PACKAGES/openssl-1.1.0f || exit
 	execute ./config --prefix=${WORKSPACE} --openssldir=/usr/local/ssl no-ssl2 no-ssl3 no-comp
+	export CFLAGS="-I/usr/local/ssl/include -L/usr/local/ssl/lib -Wl,-rpath=/usr/local/ssl/lib" CFLAGS="$CFLAGS" CXXFLAGS="$CFLAGS"
 	execute sudo -i
 	execute sudo make depend
 	execute sudo make install
-	export CFLAGS="-I/usr/local/ssl/include -L/usr/local/ssl/lib -Wl,-rpath=/usr/local/ssl/lib" CFLAGS="$CFLAGS" CXXFLAGS="$CFLAGS"
 	build_done "openssl"
 fi
 
