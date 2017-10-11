@@ -309,8 +309,8 @@ if build "openssl"; then
 	cd $PACKAGES/openssl-1.0.2l || exit
 	export CFLAGS="-I/usr/local/ssl/include -L/usr/local/ssl/lib -Wl,-rpath=/usr/local/ssl/lib" CFLAGS="$CFLAGS" CXXFLAGS="$CFLAGS"
 	execute ./config --prefix=${WORKSPACE} --openssldir=/usr/local/ssl no-ssl2 no-ssl3 no-comp
-	execute make depend
-	execute make install
+	execute sudo make depend
+	execute sudo make install
 	build_done "openssl"
 fi
 
