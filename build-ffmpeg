@@ -305,8 +305,8 @@ if build "fdk_aac"; then
 fi
 
 if build "openssl"; then
-	download "https://www.openssl.org/source/openssl-1.0.2l.tar.gz" "openssl-1.0.2l.tar.gz"
-	cd $PACKAGES/openssl-1.0.2l || exit
+	download "https://www.openssl.org/source/openssl-1.1.0f.tar.gz" "/openssl-1.1.0f.tar.gz"
+	cd $PACKAGES//openssl-1.1.0f || exit
 	execute ./config --prefix=${WORKSPACE} --openssldir=/usr/local/ssl no-ssl2 no-ssl3 no-comp
 	execute sudo make depend
 	execute sudo make install
@@ -345,7 +345,7 @@ execute ./configure  --arch=64 --prefix=${WORKSPACE} --extra-cflags="-I$WORKSPAC
 	--enable-libopencore_amrnb \
 	--enable-filters \
 	--enable-libvidstab \
-	--enable-openssl=
+	--enable-openssl
 	# enable all filters
 	# enable AAC de/encoding via libfdk-aac [no]
 	# enable detecting cpu capabilities at runtime (smaller binary)
