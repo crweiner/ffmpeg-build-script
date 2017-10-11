@@ -307,10 +307,10 @@ fi
 if build "openssl"; then
 	download "https://www.openssl.org/source/openssl-1.0.2l.tar.gz" "openssl-1.0.2l.tar.gz"
 	cd $PACKAGES/openssl-1.0.2l || exit
-	export CFLAGS="-I/usr/local/ssl/include -L/usr/local/ssl/lib -Wl,-rpath=/usr/local/ssl/lib" CFLAGS="$CFLAGS" CXXFLAGS="$CFLAGS"
 	execute ./config --prefix=${WORKSPACE} --openssldir=/usr/local/ssl no-ssl2 no-ssl3 no-comp
 	execute sudo make depend
 	execute sudo make install
+	export CFLAGS="-I/usr/local/ssl/include -L/usr/local/ssl/lib -Wl,-rpath=/usr/local/ssl/lib" CFLAGS="$CFLAGS" CXXFLAGS="$CFLAGS"
 	build_done "openssl"
 fi
 
@@ -345,7 +345,7 @@ execute ./configure  --arch=64 --prefix=${WORKSPACE} --extra-cflags="-I$WORKSPAC
 	--enable-libopencore_amrnb \
 	--enable-filters \
 	--enable-libvidstab \
-	--enable-openssl
+	--enable-openssl=
 	# enable all filters
 	# enable AAC de/encoding via libfdk-aac [no]
 	# enable detecting cpu capabilities at runtime (smaller binary)
